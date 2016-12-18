@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %} Available Courses {% endblock %}
+
+{% block content %}
+	<div class="steps">
+		<h1> Course List </h1>
+		{% for course in courses %}
+			<div class="step">
+				<header>
+					<a href="{% url 'courses:detail' pk=course.pk %}">{{ course.title }}</a>
+				</header>
+				<div class="step-description">
+					{{ course.description }}
+				</div>
+			</div>
+		{% endfor %}
+		{% if user.is_authenticated %}
+			<hr>
+			<a href="{% url 'courses:create_course' %}"> Add Course </a>
+		{% endif %}
+	</div>
+{% endblock %}

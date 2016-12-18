@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	{{ form.instance.title| default:"New Quiz" }} | {{ course.title }}
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h1>{{ form.instance.title| default:"Make a new quiz" }}</h1>
+		<form method="POST" action="">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Save">
+		</form>
+	</div>
+{% endblock %}

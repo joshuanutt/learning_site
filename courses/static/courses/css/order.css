@@ -1,0 +1,17 @@
+.sortable-ghost {
+    border: 1px solid cornflowerblue;
+}
+
+input {
+  text-align:center;
+  padding:.5em;
+}
+
+input[type="number"] {
+  width:30px;
+}
+
+input[type="text"] {
+  width: 90%;
+  margin:0 .5em;
+}

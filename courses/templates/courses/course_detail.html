@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<article>
+	<h1> {{ course.title }}</h1>
+	<p> {{course.description }} </p>
+
+	<div class="steps">
+		{% for step in steps %}
+			<div class="step">
+				<h3>
+					<a href="{{ step.get_absolute_url }}">
+						{{ step.title }}
+					</a>
+				</h3>
+				<p> {{ step.description }} </p>
+			</div>
+		{% endfor %}
+	</div>
+</article>
+{% if user.is_authenticated %}
+	<hr>
+	<div class="dropdown">
+	  <button onclick="myFunction()" class="dropbtn">Add</button>
+	  <div id="myDropdown" class="dropdown-content">
+	    <a href="{% url 'courses:create_quiz' course_pk=course.id %}"> New Quiz </a> 
+	    <a href="{% url 'courses:create_text' course_pk=course.id %}"> Text Step</a>
+	  </div>
+	</div>
+	{% block javascript %}
+		<script>
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function myFunction() {
+			    document.getElementById("myDropdown").classList.toggle("show");
+			}
+
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+
+			    var dropdowns = document.getElementsByClassName("dropdown-content");
+			    var i;
+			    for (i = 0; i < dropdowns.length; i++) {
+			      var openDropdown = dropdowns[i];
+			      if (openDropdown.classList.contains('show')) {
+			        openDropdown.classList.remove('show');
+			      }
+			    }
+			  }
+			}
+		</script>
+	{% endblock %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	{{ question| default:"New Answer" }} | {{ question.quiz.course.title }}
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h1> {{ question.prompt }} </h1>
+		<h3>Answers</h3>
+		<form method="POST" action="">
+			{% csrf_token %}
+			<section>
+				{{ formset }}
+			</section>
+			<input type="submit" value="Save">
+		</form>
+	</div>
+{% endblock %}

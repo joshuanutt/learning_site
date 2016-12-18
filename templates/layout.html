@@ -1,0 +1,40 @@
+{% load static from staticfiles %}
+{% load course_extras %}
+<!doctype html>
+<html>
+	<head>
+
+		<title> {% block title %} {% endblock %}</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/layout.css' %}">
+		{% block css %}{% endblock %}
+	</head>
+	<body>
+		<nav>
+			<span id="logo"></span>
+			<a href="{% url 'home' %}" id="home">Home</a>
+			<a href="{% url 'courses:list' %}" id="courses">Courses</a>
+			<a href="{% url 'logout' %}" id="logout">Logout</a>
+		</nav>
+		<div class="container">
+			{% block breadcrumbs %}{% endblock %}
+			{% if messages %}
+				<div class="row">
+					<div>
+						{% for message in messages %}
+							{{ message }}
+							<a href="#">&times;</a>
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+
+			{% block content %}{% endblock %}
+		</div>
+		<script src="{% static 'js/vendor/jquery-2.1.4.min.js' %}"></script>
+		<script src="{% static 'js/vendor/what-input.min.js' %}"></script>
+		<script src="{% static 'js/foundation.min.js' %}"></script>
+		{% block javascript %}{% endblock %}
+	</body>
+
+<html>

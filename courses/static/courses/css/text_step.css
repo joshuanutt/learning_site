@@ -1,0 +1,19 @@
+input {
+  padding:.5em;
+}
+
+input[type="number"] {
+  width:30px;
+}
+
+input[type="text"] {
+  width: 98.7%;
+}
+
+textarea {
+	width:100%;
+}
+
+h1 {
+	text-align:center;
+}
